@@ -1,0 +1,24 @@
+<div class="contextual">
+  <%= link_to t('button_add'), new_project_billing_hour_path(@project), class: 'icon icon-add' %>
+</div>
+<h2> Billing hours </h2>
+<% @billing_hours = BillingHour.where(project_id: @project.self_and_descendants.map(&:id)) %>
+<table class="list">
+  <thead>
+  <tr>
+    <th><%= t('label_project') %></th>
+    <th>Time Access</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @billing_hours.each do |billing_hour| %>
+  <tr>
+    <td><%= link_to_project billing_hour.project %></td>
+    <td><%= billing_hour.time %></td>
+    <td><%= link_to t('button_edit'), edit_project_billing_hour_path(@project,  billing_hour), class: 'icon icon-edit' %>
+    <%= link_to t('button_delete'), project_billing_hour_path(@project,  billing_hour), method: :delete, data: {confirm: t('text_are_you_sure')}, class: 'icon icon-del' %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

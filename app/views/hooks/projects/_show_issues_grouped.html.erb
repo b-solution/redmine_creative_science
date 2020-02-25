@@ -1,0 +1,41 @@
+<% total_issues = Issue.where(project_id: @project.self_and_descendants.map(&:id)).where(status_id: IssueStatus.where(is_closed: false).pluck(:id)) %>
+<% issues_grouped = total_issues.group_by{|issue| issue.assigned_to} %>
+<table class="list">
+  <thead>
+  <tr>
+    <th class="checkbox hide-when-print">
+      <%= check_box_tag 'check_all', '', false, :class => 'toggle-selection',
+                        :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
+    </th>
+    <th>#</th>
+    <th><%= l('label_project') %></th>
+    <th><%= l('field_subject') %></th>
+    <th><%= l('label_tracker') %></th>
+    <th><%= l('field_status') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% issues_grouped.each do |group_name, issues| %>
+    <% reset_cycle %>
+    <tr class="group open">
+      <td colspan="6">
+        <span class="expander" onclick="toggleRowGroup(this);">&nbsp;</span>
+        <span class="name"><%= group_name %></span> <span class="count"><%= issues.count %></span> <span class="totals"><%= total_issues.count %></span>
+        <%= link_to_function("#{l(:button_collapse_all)}/#{l(:button_expand_all)}",
+                             "toggleAllRowGroups(this)", :class => 'toggle-all') %>
+      </td>
+    </tr>
+    </tr>
+    <%   issue_list(issues) do |issue, level| %>
+      <tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= issue.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+        <td class="checkbox hide-when-print"><%= check_box_tag("ids[]", issue.id, false, :id => nil) %></td>
+        <td><%= issue.id %></td>
+        <td><%= link_to_project issue.project %></td>
+        <td><%= link_to_issue issue %></td>
+        <td><%= link_to_issue issue %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+
+</table>

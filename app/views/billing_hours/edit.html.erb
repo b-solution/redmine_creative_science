@@ -1,0 +1,14 @@
+<h2>Edit Billing Hours</h2>
+
+<%=  labelled_form_for [@project, @billing_hour] do |f|%>
+
+  <p>
+    <%= f.number_field :time, step: 0.5, min: 1 %>
+  </p>
+
+  <p>
+    <%= f.submit t('button_save') %>
+    <%= link_to :back %>
+  </p>
+
+<% end %>
