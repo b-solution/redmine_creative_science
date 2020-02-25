@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_creative_science do
 end
 
 class IssueGroupProjectHook < Redmine::Hook::ViewListener
-  render_on :view_projects_show_left,   partial: 'hooks/projects/show_issues_grouped'
+  render_on :view_projects_top_show_left,   partial: 'hooks/projects/show_issues_grouped'
   render_on :view_projects_form,   partial: 'hooks/projects/add_account_contact'
 end
 

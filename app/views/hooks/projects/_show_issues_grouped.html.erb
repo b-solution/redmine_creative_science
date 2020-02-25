@@ -17,7 +17,7 @@
   <tbody>
   <% issues_grouped.each do |group_name, issues| %>
     <% reset_cycle %>
-    <tr class="group open">
+    <tr class="group ">
       <td colspan="6">
         <span class="expander" onclick="toggleRowGroup(this);">&nbsp;</span>
         <span class="name"><%= group_name %></span> <span class="count"><%= issues.count %></span> <span class="totals"><%= total_issues.count %></span>
@@ -27,7 +27,7 @@
     </tr>
     </tr>
     <%   issue_list(issues) do |issue, level| %>
-      <tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= issue.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
+      <tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= issue.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>" style="display: none;">
         <td class="checkbox hide-when-print"><%= check_box_tag("ids[]", issue.id, false, :id => nil) %></td>
         <td><%= issue.id %></td>
         <td><%= link_to_project issue.project %></td>
