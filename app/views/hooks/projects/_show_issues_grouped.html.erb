@@ -20,7 +20,7 @@
     <tr class="group ">
       <td colspan="6">
         <span class="expander" onclick="toggleRowGroup(this);">&nbsp;</span>
-        <span class="name"><%= group_name %></span> <span class="count"><%= issues.count %></span> <span class="totals"><%= total_issues.count %></span>
+        <span class="name"><%= group_name %></span> <span class="count"><%= issues.count %></span> <span class="totals"><%#= total_issues.count %></span>
         <%= link_to_function("#{l(:button_collapse_all)}/#{l(:button_expand_all)}",
                              "toggleAllRowGroups(this)", :class => 'toggle-all') %>
       </td>
