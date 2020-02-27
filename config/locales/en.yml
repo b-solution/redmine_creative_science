@@ -3,3 +3,6 @@ en:
   # my_label: "My label"
   field_time: Time To be billed
   field_account_contact_mail: Account Contact Mail
+  label_billing_hour_plural: Purchased hours
+  label_issue_priority: Issue Priority
+

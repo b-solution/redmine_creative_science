@@ -3,7 +3,7 @@
 <%=  labelled_form_for [@project, @billing_hour] do |f|%>
 
   <p>
-    <%= f.number_field :time, step: 0.5, min: 1 %>
+    <%= f.number_field :time, step: 0.5, min: 1 ,placeholder: 'purchased hours' %>
   </p>
 
   <p>

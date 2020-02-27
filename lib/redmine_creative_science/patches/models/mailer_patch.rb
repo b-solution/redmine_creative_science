@@ -8,6 +8,11 @@ module  RedmineCreativeScience
               @user = user
               mail :to => user, :subject => "Billing hours reminder"
             end
+
+            def mailer_reminder_over(user)
+              @user = user
+              mail :to => user, :subject => "Purchased hours over"
+            end
           end
         end
       end

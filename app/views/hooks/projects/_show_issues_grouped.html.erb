@@ -32,7 +32,8 @@
         <td><%= issue.id %></td>
         <td><%= link_to_project issue.project %></td>
         <td><%= link_to_issue issue %></td>
-        <td><%= link_to_issue issue %></td>
+        <td><%= issue.tracker %></td>
+        <td><%= issue.status %></td>
       </tr>
     <% end %>
   <% end %>

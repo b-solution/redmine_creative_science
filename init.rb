@@ -3,7 +3,6 @@ Redmine::Plugin.register :redmine_creative_science do
   author 'Bilel kedidi'
   description 'This is a plugin for Redmine'
   version '0.0.1'
-
 end
 
 class IssueGroupProjectHook < Redmine::Hook::ViewListener
