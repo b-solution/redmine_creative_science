@@ -8,9 +8,9 @@
 
 </h2><% if @project %>
   <%= l('field_group_by') %>
-  <%= link_to "Tracker", project_issues_path(@project, :set_filter => 1, :group_by => 'tracker') %>
-  <%= link_to "Priority", project_issues_path(@project, :set_filter => 1, :group_by => 'priority') %>
-  <%= link_to "Assignee", project_issues_path(@project, :set_filter => 1, :group_by => 'assigned_to') %>
+  <%= link_to "Priority", project_issues_path(@project, :set_filter => 1, :group_by => 'priority'), style: "#{ 'color: red' if @query.group_by == 'priority'}" %>
+  <%= link_to "Tracker", project_issues_path(@project, :set_filter => 1, :group_by => 'tracker') , style: "#{ 'color: red' if @query.group_by == 'tracker'}"%>
+  <%= link_to "Assignee", project_issues_path(@project, :set_filter => 1, :group_by => 'assigned_to') , style: "#{ 'color: red' if @query.group_by == 'assigned_to'}"%>
 <% end  %>
 <% html_title(@query.new_record? ? l(:label_issue_plural) : @query.name) %>
 
