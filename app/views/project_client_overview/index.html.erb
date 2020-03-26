@@ -19,7 +19,7 @@
   <% Project.where(parent_id: nil).each do |project| %>
     <% project_ids = project.self_and_descendants.map(&:id) %>
   <tr>
-    <td><%= link_to_project project.name %></td>
+    <td><%= link_to_project project %></td>
     <td><%= Array.wrap(project.users_by_role[client_role]).sort.collect{|u| link_to_user u}.join(", ").html_safe%></td>
     <td> <%= ActiveSupport::TimeZone.all.detect{|zone| zone.name == project.contact_timezone }.to_s if project.contact_timezone %></td>
     <td><%= project.day_ends_at  %></td>
