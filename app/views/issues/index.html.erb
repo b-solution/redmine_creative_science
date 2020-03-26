@@ -8,9 +8,18 @@
 
 </h2><% if @project %>
   <%= l('field_group_by') %>
-  <%= button_to "Priority", project_issues_path(@project, :set_filter => 1, :group_by => 'priority'), style: "margin-left: 15px; #{ 'color: red' if @query.group_by == 'priority'}" %>
-  <%= button_to "Tracker", project_issues_path(@project, :set_filter => 1, :group_by => 'tracker') , style: "margin-left: 15px; #{ 'color: red' if @query.group_by == 'tracker'}"%>
-  <%= button_to "Assignee", project_issues_path(@project, :set_filter => 1, :group_by => 'assigned_to') , style: "margin-left: 15px; #{ 'color: red' if @query.group_by == 'assigned_to'}"%>
+  <%= button_to "Priority", project_issues_path(@project, :set_filter => 1, :group_by => 'priority'), style: "margin-left: 15px; #{ 'color: red' if @query.group_by == 'priority'}", class: 'issues-button-groups' %>
+  <%= button_to "Tracker", project_issues_path(@project, :set_filter => 1, :group_by => 'tracker') , style: "margin-left: 15px; #{ 'color: red' if @query.group_by == 'tracker'}" , class: 'issues-button-groups' %>
+  <%= button_to "Assignee", project_issues_path(@project, :set_filter => 1, :group_by => 'assigned_to') , style: "margin-left: 15px; #{ 'color: red' if @query.group_by == 'assigned_to'}" , class: 'issues-button-groups' %>
+
+  <script>
+    $(function(){
+      $('.issues-button-groups').on('click', function(e){
+        e.preventDefault()
+        location.href = $(this).parent('form').attr('action')
+      })
+    })
+  </script>
 <% end  %>
 <% html_title(@query.new_record? ? l(:label_issue_plural) : @query.name) %>
 

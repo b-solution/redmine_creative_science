@@ -1,0 +1,47 @@
+<h2><%= l('project_client_overview') %></h2>
+<table class="list">
+  <thead>
+  <tr>
+    <th>Organization</th>
+    <th>Main POC(s)</th>
+    <th> Time Zone</th>
+    <th>"El fin del día"</th>
+
+    <th>Open Tickets</th>
+    <th> Monthly Total Hours (Open)</th>
+    <th> Monthly Closed Tickets</th>
+    <th> Total Closed Tickets</th>
+    <th>MonthlyTotal Hours (Closed)</th>
+    <th>Total Hours (Closed)</th>
+  </tr>
+  </thead>
+  <% client_role=  Role.find_by_id(7) %>
+  <% Project.where(parent_id: nil).each do |project| %>
+    <% project_ids = project.self_and_descendants.map(&:id) %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= Array.wrap(project.users_by_role[client_role]).sort.collect{|u| link_to_user u}.join(", ").html_safe%></td>
+    <td> <%= ActiveSupport::TimeZone.all.detect{|zone| zone.name == project.contact_timezone }.to_s if project.contact_timezone %></td>
+    <td><%= project.day_ends_at  %></td>
+
+    <td><%= project.issues.visible.open.count %></td>
+    <td><%=  TimeEntry.where(project_id: project_ids).joins(:issue).
+             where(issues: {status_id: IssueStatus.where(is_closed: false).pluck(:id) }).
+             where("time_entries.spent_on BETWEEN ? AND ?", Date.today.beginning_of_month, Date.today.end_of_month).
+             sum(:hours).round(2)
+    %></td>
+    <td><%= Issue.where(project_id: project_ids).where("issues.closed_on BETWEEN ? AND ?", Date.today.beginning_of_month, Date.today.end_of_month).count %></td>
+
+    <td><%= Issue.where(project_id: project_ids).where(issues: {status_id: IssueStatus.where(is_closed: true).pluck(:id) }).count %></td>
+   <td><%= TimeEntry.where(project_id: project_ids).joins(:issue).
+           where(issues: {status_id: IssueStatus.where(is_closed: true).pluck(:id) }).
+           where("issues.closed_on BETWEEN ? AND ?", Date.today.beginning_of_month, Date.today.end_of_month).
+           sum(:hours).round(2) %> hours</td>
+    <td><%=  TimeEntry.where(project_id: project_ids).joins(:issue).
+             where(issues: {status_id: IssueStatus.where(is_closed: true).pluck(:id) })
+             .sum(:hours).round(2) %>hours</td>
+  </tr>
+
+  <% end %>
+
+</table>

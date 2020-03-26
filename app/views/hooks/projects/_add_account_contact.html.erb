@@ -1,3 +1,7 @@
 <p>
   <%= form.text_field :account_contact_mail, type: 'email', placeholder: 'Account Contract Mail' %>
 </p>
+<p>
+  <%= form.text_field :day_ends_at, placeholder: 'End Of Day' %>
+</p>
+<p><%= form.time_zone_select :contact_timezone, nil, :include_blank => true %></p>

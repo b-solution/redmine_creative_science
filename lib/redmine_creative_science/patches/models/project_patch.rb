@@ -4,7 +4,7 @@ module  RedmineCreativeScience
       module ProjectPatch
         def self.included(base)
           base.class_eval do
-            safe_attributes 'account_contact_mail'
+            safe_attributes 'account_contact_mail', 'contact_timezone', 'day_ends_at'
           end
         end
       end

@@ -5,4 +5,7 @@ en:
   field_account_contact_mail: Account Contact Mail
   label_billing_hour_plural: Purchased hours
   label_issue_priority: Issue Priority
+  field_contact_timezone: Contact Time zone
+  field_day_ends_at: End Of Day
+  project_client_overview: Project Client Overview
 

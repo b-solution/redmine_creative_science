@@ -2,7 +2,9 @@ Redmine::Plugin.register :redmine_creative_science do
   name 'Redmine Creative Science plugin'
   author 'Bilel kedidi'
   description 'This is a plugin for Redmine'
-  version '0.0.1'
+  version '0.0.2'
+
+  menu :admin_menu, :project_client_overview, { :controller => 'project_client_overview', :action => 'index' }, caption: :project_client_overview
 end
 
 class IssueGroupProjectHook < Redmine::Hook::ViewListener
