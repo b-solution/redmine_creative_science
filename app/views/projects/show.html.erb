@@ -156,12 +156,12 @@
   <fieldset>
     <legend>Support Hour Contracts</legend>
     <ul>
-      <li style="list-style: disc;"> Purchased Hours<b><%= @project.puchased_hours.to_f %></b></li>
-      <% if @project.puchased_start_date %>
-        <% time_entries = @project.time_entries.where("spent_on >= ? ", @project.puchased_start_date  ) %>
-        <li style="list-style: disc;">Hours Left:<b><%= @project.puchased_hours - time_entries.sum(:hours) %></b></li>
+      <li style="list-style: disc;"> Purchased Hours<b><%= @project.purchased_hours.to_f %></b></li>
+      <% if @project.purchased_start_date %>
+        <% time_entries = @project.time_entries.where("spent_on >= ? ", @project.purchased_start_date  ) %>
+        <li style="list-style: disc;">Hours Left:<b><%= @project.purchased_hours - time_entries.sum(:hours) %></b></li>
         <li style="list-style: disc;">Open Ticket Hours:<b><%= @project.issues.open.count %></b></li>
-        <li style="list-style: disc;">Start Date: <b><%= format_date @project.puchased_start_date %></b></li>
+        <li style="list-style: disc;">Start Date: <b><%= format_date @project.purchased_start_date %></b></li>
       <% end %>
     </ul>
   </fieldset>
