@@ -1,4 +1,4 @@
-class ContactTimeZoneToProject < ActiveRecord::Migration
+class AddPushasedHoursToProject22 < ActiveRecord::Migration
   def change
     add_column :projects, :puchased_hours, :float
     add_column :projects, :puchased_start_date, :date

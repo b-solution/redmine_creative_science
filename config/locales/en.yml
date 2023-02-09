@@ -8,4 +8,5 @@ en:
   field_contact_timezone: Contact Time zone
   field_day_ends_at: End Of Day
   project_client_overview: Project Client Overview
-
+  field_purchased_hours: Purchased hours
+  field_purchased_start_date: Purchased start date
